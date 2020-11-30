@@ -1,1 +1,61 @@
-<p>painel works!</p>
+<html>
+    <body>
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle"   href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Estados
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" (click)="getSelectedDropdown('Rio Grande do Sul')">Rio Grande do Sul</a>
+          <a class="dropdown-item" (click)="getSelectedDropdown('Santa Catarina')">Santa Catarina</a>
+          <a class="dropdown-item" (click)="getSelectedDropdown('Paraná')">Paraná</a>
+        </div>
+    </div>
+
+<div id="info">
+   <p style="font-weight: bolder;">Nome do estado: {{opcao}}</p> 
+   <p style="font-weight: bolder;">População:</p>
+   <p style="font-weight: bolder;">Custo do Estado:</p>
+   <p style="font-weight: bolder;">Bandeira:</p>
+
+   <button type="button" class="btn btn-success">Adicionar Cidade</button>
+</div>
+
+<div id="tabela" class="col-sm-6">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">População</th>
+            <th scope="col">Custo da Cidade</th>
+            <th scope="col">Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Londrina</td>
+            <td>500.000</td>
+            <td>120US</td>
+            <td><button type="button" class="btn btn-danger">Deletar</button></td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Londrina</td>
+            <td>500.000</td>
+            <td>120US</td>
+            <td><button type="button" class="btn btn-danger">Deletar</button></td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Londrina</td>
+            <td>500.000</td>
+            <td>120US</td>
+            <td><button type="button" class="btn btn-danger">Deletar</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+    </body>
+
+</html>
