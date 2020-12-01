@@ -1,7 +1,7 @@
 
 export class Estado{
-    id: number;
+    id: string;
     nome: string;
     populacao: string;
-    custoEstado: number;
+    custoEstadoUS: string;
 }

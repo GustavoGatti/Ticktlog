@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PainelComponent } from './painel/painel.component';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { PainelComponent } from './painel/painel.component';
     PainelComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule
   ],

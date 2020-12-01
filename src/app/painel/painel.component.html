@@ -5,19 +5,21 @@
           Estados
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" (click)="getSelectedDropdown('Rio Grande do Sul')">Rio Grande do Sul</a>
-          <a class="dropdown-item" (click)="getSelectedDropdown('Santa Catarina')">Santa Catarina</a>
-          <a class="dropdown-item" (click)="getSelectedDropdown('Paraná')">Paraná</a>
+          <li *ngFor="let estado of estados">
+            <a (click)="getSelectedDropdown($event)" >{{estado.nome}}</a>
+          </li>
         </div>
     </div>
 
+<div *ngIf="flag == true">
 <div id="info">
-   <p style="font-weight: bolder;">Nome do estado: {{opcao}}</p> 
-   <p style="font-weight: bolder;">População:</p>
-   <p style="font-weight: bolder;">Custo do Estado:</p>
-   <p style="font-weight: bolder;">Bandeira:</p>
+   <p style="font-weight: bolder;">Nome do estado: {{estados[indice].nome}}</p> 
+   <p style="font-weight: bolder;">População: {{estados[indice].populacao}}</p>
+   <p style="font-weight: bolder;">Custo do Estado: {{estados[indice].custoEstadoUS}}</p>
+   <p style="font-weight: bolder;">Bandeira: <img [src]= "img[indice]" width="120px" height="60px" ></p> 
 
-   <button type="button" class="btn btn-success">Adicionar Cidade</button>
+   <br><button style="margin-top: 20px;" type="button" class="btn btn-success">Adicionar Cidade</button>
+   <button type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Adicionar Cidade por Lote</button>
 </div>
 
 <div id="tabela" class="col-sm-6">
@@ -32,29 +34,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Londrina</td>
-            <td>500.000</td>
-            <td>120US</td>
-            <td><button type="button" class="btn btn-danger">Deletar</button></td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Londrina</td>
-            <td>500.000</td>
-            <td>120US</td>
-            <td><button type="button" class="btn btn-danger">Deletar</button></td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Londrina</td>
-            <td>500.000</td>
-            <td>120US</td>
-            <td><button type="button" class="btn btn-danger">Deletar</button></td>
+          <tr *ngFor="let cidade of cidades">
+            <th scope="row">{{cidade.id}}</th>
+            <td>{{cidade.nome}}</td>
+            <td>{{cidade.populacao}}</td>
+            <td>{{cidade.custoCidadeUS}}</td>
+            <td><button type="button" class="btn btn-danger" (click) = "DeletarCidade(cidade.id)">Deletar</button></td>
           </tr>
         </tbody>
       </table>
+</div>
 </div>
     </body>
 
