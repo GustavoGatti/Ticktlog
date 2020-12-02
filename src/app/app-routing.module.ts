@@ -7,7 +7,7 @@ import { PainelComponent } from './painel/painel.component';
 
 const routes: Routes = [
                         { path: '',  component: PainelComponent},
-                        {path: 'inserirCidade',  component: InsercaoComponent},
+                        {path: 'inserirCidade/:idEstado',  component: InsercaoComponent},
                         {path: 'importarCidades',  component: ImportacaoComponent},
                       ];
 

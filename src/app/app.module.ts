@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PainelComponent } from './painel/painel.component';
@@ -11,6 +11,10 @@ import { BEAPICommService } from 'src/shared/-beapicomm-service.service';
 import { ImportacaoComponent } from './importacao/importacao.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import localePt from "@angular/common/locales/pt";
+import { registerLocaleData } from "@angular/common";
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -28,7 +32,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule,
     FormsModule
   ],
-  providers: [BEAPICommService],
+  providers: [BEAPICommService,
+    {
+      provide: LOCALE_ID,
+      useValue: "pt-br"
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

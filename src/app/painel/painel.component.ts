@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { eventNames } from 'process';
 import { stringify } from 'querystring';
 import { CidadeService } from 'src/shared/cidade.service';
@@ -10,13 +10,14 @@ import { Cidade } from 'src/shared/cidade.modal';
 import { USD } from 'src/shared/USD.modal';
 import { error } from 'protractor';
 import { Router} from '@angular/router';
+import { InsercaoComponent } from '../insercao/insercao.component';
 
 
 @Component({
   selector: 'app-painel',
   templateUrl: './painel.component.html',
   styleUrls: ['./painel.component.css'], 
-  providers: [EstadoService, CidadeService]
+  providers: [EstadoService, CidadeService, InsercaoComponent]
 })
 
 
@@ -24,17 +25,18 @@ import { Router} from '@angular/router';
 export class PainelComponent implements OnInit {
 
   public opcao:number;
-  @Output() public estados: Array<Estado>;
+  public estados: Array<Estado> = [];
   public dolar: Dolar;
   public cidades: Array<Cidade>;
   valordolar: any;
   resposta: any;
-  @Output() public indice: number = 1;
+  public indice: number = 1;
   flag: boolean = false;
   SelectedIDs:any[] = [];
   pag: number = 1;
   contador: number = 3;
 
+  
   img: string[] = [
     'assets/RioGrandeDoSul.png',
     'assets/SantaCatarina.png',
@@ -149,7 +151,8 @@ export class PainelComponent implements OnInit {
   }
 
   AdicionarCidades(): void{
-    this.router.navigate(['/inserirCidade']);
+
+    this.router.navigate(['/inserirCidade/' + this.opcao]);
   }
 
   AdicionarCidadesLote(): void{

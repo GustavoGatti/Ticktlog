@@ -52,8 +52,8 @@ export class BEAPICommService
 
     this.novaCidade = { nome: novaCidade, populacao: populacao };
 
-    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(sucess => {return true},
-                                                                          error  => {return false});
+    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(success => {alert("Incluso com Sucesso")},
+                                                                          error  => {alert("Erro" + error.message)});
   }
 
 }

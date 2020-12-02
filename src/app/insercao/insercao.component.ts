@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output        } from '@angular/core';
-import { Router           } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, Output ,EventEmitter       } from '@angular/core';
+import { ActivatedRoute, Router           } from '@angular/router';
 import { BEAPICommService } from 'src/shared/-beapicomm-service.service';
-import { Estado } from 'src/shared/estado.modal';
+
 
 @Component({
   selector: 'app-insercao',
@@ -9,27 +10,37 @@ import { Estado } from 'src/shared/estado.modal';
   styleUrls: ['./insercao.component.css']
 })
 
-export class InsercaoComponent{
 
-  public estadoSelecionado        : string = 'Santa Catarina';
-  public numeroEstadoSelecionado  : number = 11;
+export class InsercaoComponent implements OnInit{
 
+  idEstado: string = '';
+  nomeEstado: string = '11';  
 
-  constructor(private router        : Router,
-              public APICall        : BEAPICommService, 
-         ) { }
+  constructor(private router: Router,
+    public APICall: BEAPICommService,
+    private route: ActivatedRoute
+  ) { }
   
-  
 
 
-  public importarCidades() : boolean
-  {
-    
-    console.log(this.numeroEstadoSelecionado);
+  ngOnInit(): void {
+    this.idEstado = this.route.snapshot.paramMap.get("idEstado");
+    if(this.idEstado == '1') {
+      this.nomeEstado = 'Rio Grande do Sul'
+    } else if(this.idEstado == '11') {
+      this.nomeEstado = 'Santa Catarina'
+    } else {
+      this.nomeEstado = 'Paraná'
+    }
+  }
+
+  public importarCidades() : boolean{
+    //console.log(this.numeroEstadoSelecionado);
     this.router.navigate(['/importarCidades']);
-
     return false;
-
+  }
+  voltar(): void {
+    this.router.navigate(['']);
   }
 
 }
