@@ -2,7 +2,7 @@
     <body>
     <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle"   href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Estados
+         {{estados[indice].nome}}
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <li *ngFor="let estado of estados">
@@ -10,41 +10,57 @@
           </li>
         </div>
     </div>
-
-<div *ngIf="flag == true">
-<div id="info">
-   <p style="font-weight: bolder;">Nome do estado: {{estados[indice].nome}}</p> 
-   <p style="font-weight: bolder;">População: {{estados[indice].populacao}}</p>
-   <p style="font-weight: bolder;">Custo do Estado: {{estados[indice].custoEstadoUS}}</p>
-   <p style="font-weight: bolder;">Bandeira: <img [src]= "img[indice]" width="120px" height="60px" ></p> 
-
-   <br><button style="margin-top: 20px;" type="button" class="btn btn-success">Adicionar Cidade</button>
-   <button type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Adicionar Cidade por Lote</button>
+    
+<div class="row" id="info">
+  
+  <div  style=" width: 150px; height: 150px; margin-left: 20px;">
+    <p style="text-align: center; font-weight: bold;">Bandeira</p>
+    <img [src]='img[indice]' style="width: 150px;" >
+  </div>
+  <div  style=" width: 150px; height: 150px; margin-left: 20px;">
+    <p style="text-align: center; font-weight: bold;">População</p>
+    <p style="text-align: center; font-size: larger; font-weight: bold;">{{estados[indice].populacao}}</p>
+    <p style="text-align: center; font-size: larger; ">Habitantes</p>
+  </div>
+  <div  style=" width: 150px; height: 150px; margin-left: 20px;">
+    <p style="text-align: center; font-weight: bold;">Custo</p>
+    <p style="text-align: center; font-size: larger; font-weight: bold;">{{estados[indice].custoEstadoUS | currency: 'BRL':true}}</p>
+  </div>
 </div>
 
 <div id="tabela" class="col-sm-6">
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">População</th>
-            <th scope="col">Custo da Cidade</th>
-            <th scope="col">Deletar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cidade of cidades">
-            <th scope="row">{{cidade.id}}</th>
-            <td>{{cidade.nome}}</td>
-            <td>{{cidade.populacao}}</td>
-            <td>{{cidade.custoCidadeUS}}</td>
-            <td><button type="button" class="btn btn-danger" (click) = "DeletarCidade(cidade.id)">Deletar</button></td>
-          </tr>
-        </tbody>
-      </table>
+   <table class="table">
+       <thead class="thead-dark">
+         <tr>
+           <th scope="col">Id</th>
+           <th scope="col">Cidade</th>
+           <th scope="col">População</th>
+           <th scope="col">Custo da Cidade</th>
+           <th scope="col"></th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let cidade of cidades">
+           <th scope="row">{{cidade.id}}</th>
+           <td>{{cidade.nome}}</td>
+           <td>{{cidade.populacao}}</td>
+           <td>{{cidade.custoCidadeUS | currency: 'BRL':true}}</td>
+           <td>
+            <div class="form-group">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck"  (click)="selectID(cidade.id)">
+                <label class="form-check-label" for="gridCheck">
+                </label>
+              </div>
+            </div>
+           </td>
+         </tr>
+       </tbody>
+     </table>
 </div>
-</div>
+  <button style="margin-top: 20px; margin-left: 60%;" type="button" class="btn btn-success">Adicionar Cidade</button>
+  <button type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Adicionar Cidade por Lote</button>
+  <button type="button" class="btn btn-danger" style="margin-left: 10px; margin-top: 20px;" (click) = "deleteSelected()">Excluir</button>
     </body>
 
 </html>

@@ -28,8 +28,9 @@ export class PainelComponent implements OnInit {
   public cidades: Array<Cidade>;
   valordolar: any;
   resposta: any;
-  public indice: number;
+  public indice: number = 1;
   flag: boolean = false;
+  SelectedIDs:any[] = [];
 
   img: string[] = [
     'assets/RioGrandeDoSul.png',
@@ -43,6 +44,19 @@ export class PainelComponent implements OnInit {
   
     this.PegarDolar();
     //this.ListarEstados();
+  }
+
+  selectID(id){
+    if(this.SelectedIDs.find(x => x == id) == undefined){
+      console.log(id);
+      this.SelectedIDs.push(id);
+    }
+  }
+
+  deleteSelected(){
+    for (let i = 0; i < this.SelectedIDs.length; i++) {
+      this.DeletarCidade(this.SelectedIDs[i]);
+     }
   }
 
   getSelectedDropdown(event){
@@ -80,6 +94,7 @@ export class PainelComponent implements OnInit {
       _dolar =>{
         this.dolar = _dolar;
         this.ListarEstados(this.dolar.USD.bid);
+        this.ListarCidades(2, this.dolar.USD.bid);
       },
       error =>{
         console.log("erro");
@@ -116,6 +131,7 @@ export class PainelComponent implements OnInit {
         this.http.get<Dolar>("https://economia.awesomeapi.com.br/json/all/USD-BRL",).subscribe(
           _dolar =>{
             this.dolar = _dolar;
+            this.ListarEstados(this.dolar.USD.bid);
             this.ListarCidades(this.opcao, this.dolar.USD.bid);
           },
           error =>{
