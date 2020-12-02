@@ -1,8 +1,7 @@
 
-
     <div class="container h-100 d-flex justify-content-center">
         <div class="row">
-            <div >
+            <div>
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align: center;"> 
                             <h3 class="panel-title">
@@ -11,18 +10,26 @@
                     </div>
                     <div class="panel-body" style="text-align: center;">
                             <hr>
-                            Estado do ABCDEFG
+                           <!-- 
+                            <div class="dropdown">
+                                <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{estadoSelecionado}}</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                  <button (click)="estadoSelecionado='Paraná'" (click)="numeroEstadoSelecionado = 21" value=21 class="dropdown-item" type="button"> Paraná           </button>
+                                  <button (click)="estadoSelecionado='Rio Grande do Sul'" (click)="numeroEstadoSelecionado = 1" value=1 class="dropdown-item" type="button"> Rio Grande do Sul</button>
+                                  <button (click)="estadoSelecionado='Santa Catarina'" (click)="numeroEstadoSelecionado = 11" value=11 class="dropdown-item" type="button"> Santa Catarina   </button>
+                                </div>
+                              </div>-->
                             <hr>
                         <form role="form">
-                        <div class="form-group">
+                        <div class="form-group"> 
                         
-                            <label><b>Cidade</b></label>
+                            <label><b>Cidade </b></label>
                             
                             <div class="input-group">
                                 <input #cidade type="text" class="form-control" id="cidade" placeholder="Informe a Cidade" required autofocus />
                             </div>
                             <br>
-                            <label><b>População</b></label>
+                            <label><b>População </b></label>
                             
                             <div class="input-group">
                                 <input #populacao type="number" class="form-control" id="populacao" placeholder="Informe a População" required autofocus />
@@ -34,8 +41,8 @@
                     </div>
                 </div>
                 <br/>
-                <a class="btn btn-success btn-lg btn-block" role="button"> Inserir Nova Cidade! </a>
+                <a (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, estadoSelecionado)" class="btn btn-success btn-lg btn-block" role="button"> Inserir Cidade! </a>
+                <br>
             </div>
         </div>
     </div>
-

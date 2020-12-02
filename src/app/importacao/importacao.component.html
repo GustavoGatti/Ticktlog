@@ -1,0 +1,16 @@
+<div class="container h-150 d-flex justify-content-center">
+    <div class="row">
+        <div>
+            <div class="panel panel-large">
+                <div class="panel-heading"> 
+                    <div  class="custom-file">
+                        <input (change)="onChangeListener($event)" type="file" class="custom-file-input" id="customFileLangHTML" multiple="false" accept=".xlsx">
+                        <label class="custom-file-label" for="customFileLangHTML" data-browse="Localizar">Localizar arquivo .xlsx</label>
+                        <br>
+                        <a (click)="ProcessaCidades()" style="font-size: small;" class="btn btn-success btn-lg btn-block" role="button"> Importar Cidades! </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

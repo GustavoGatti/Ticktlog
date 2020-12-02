@@ -6,7 +6,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <li *ngFor="let estado of estados">
-            <a (click)="getSelectedDropdown($event)" >{{estado.nome}}</a>
+            <a class="dropdown-item" (click)="getSelectedDropdown($event)" >{{estado.nome}}</a>
           </li>
         </div>
     </div>
@@ -28,7 +28,12 @@
   </div>
 </div>
 
-<div id="tabela" class="col-sm-6">
+<nav class="navbar">
+  <p style="font-weight: bold; font-style: italic;">Pesquisa:</p>
+  <input class="form-control" type="text" name="search" [(ngModel)]="filter">  <!-- Input que deve ser adicionado -->
+</nav>
+
+<div id="tabela">
    <table class="table">
        <thead class="thead-dark">
          <tr>
@@ -40,13 +45,13 @@
          </tr>
        </thead>
        <tbody>
-         <tr *ngFor="let cidade of cidades">
+         <tr *ngFor="let cidade of cidades | filter:filter | paginate: { itemsPerPage: contador, currentPage: pag }">
            <th scope="row">{{cidade.id}}</th>
            <td>{{cidade.nome}}</td>
            <td>{{cidade.populacao}}</td>
            <td>{{cidade.custoCidadeUS | currency: 'BRL':true}}</td>
            <td>
-            <div class="form-group">
+            <div *ngIf="indice != 0" class="form-group">
               <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="gridCheck"  (click)="selectID(cidade.id)">
                 <label class="form-check-label" for="gridCheck">
@@ -57,10 +62,19 @@
          </tr>
        </tbody>
      </table>
+     <div
+		class="text-right">
+		<pagination-controls
+		(pageChange)="pag = $event" 
+		previousLabel="Anterior"
+		nextLabel="Próximo"></pagination-controls>
+		</div>
+
+
 </div>
-  <button style="margin-top: 20px; margin-left: 60%;" type="button" class="btn btn-success">Adicionar Cidade</button>
-  <button type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Adicionar Cidade por Lote</button>
-  <button type="button" class="btn btn-danger" style="margin-left: 10px; margin-top: 20px;" (click) = "deleteSelected()">Excluir</button>
+  <button (click) = "AdicionarCidades()" style="margin-top: 20px; margin-left: 60%;" type="button" class="btn btn-success"  >Adicionar Cidade</button>
+  <button (click) = "AdicionarCidadesLote()" type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" >Adicionar Cidade por Lote</button>
+  <button *ngIf="indice != 0" type="button" class="btn btn-danger" style="margin-left: 10px; margin-top: 20px;" (click) = "deleteSelected()">Excluir</button>
     </body>
 
 </html>

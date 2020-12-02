@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { eventNames } from 'process';
 import { stringify } from 'querystring';
 import { CidadeService } from 'src/shared/cidade.service';
@@ -9,12 +9,13 @@ import { EstadoService } from 'src/shared/estado.service';
 import { Cidade } from 'src/shared/cidade.modal';
 import { USD } from 'src/shared/USD.modal';
 import { error } from 'protractor';
+import { Router} from '@angular/router';
 
 
 @Component({
   selector: 'app-painel',
   templateUrl: './painel.component.html',
-  styleUrls: ['./painel.component.css'],
+  styleUrls: ['./painel.component.css'], 
   providers: [EstadoService, CidadeService]
 })
 
@@ -23,14 +24,16 @@ import { error } from 'protractor';
 export class PainelComponent implements OnInit {
 
   public opcao:number;
-  public estados: Array<Estado>;
+  @Output() public estados: Array<Estado>;
   public dolar: Dolar;
   public cidades: Array<Cidade>;
   valordolar: any;
   resposta: any;
-  public indice: number = 1;
+  @Output() public indice: number = 1;
   flag: boolean = false;
   SelectedIDs:any[] = [];
+  pag: number = 1;
+  contador: number = 3;
 
   img: string[] = [
     'assets/RioGrandeDoSul.png',
@@ -38,7 +41,8 @@ export class PainelComponent implements OnInit {
     'assets/Parana.png'
   ];
 
-  constructor(private http: HttpClient, private estadoService: EstadoService, private cidadeService: CidadeService) { }
+  constructor(private http: HttpClient, private estadoService: EstadoService,
+     private cidadeService: CidadeService, private router: Router) { }
 
   ngOnInit(): void {
   
@@ -68,11 +72,11 @@ export class PainelComponent implements OnInit {
       this.indice = 0;
       console.log(this.opcao);
     }else if(escolha == 'Santa Catarina'){
-      this.opcao = 2;
+      this.opcao = 11;
       this.indice = 1;
       console.log(this.opcao);
     }else{
-      this.opcao = 3;
+      this.opcao = 21;
       this.indice = 2;
       console.log(this.opcao); 
     }
@@ -80,7 +84,7 @@ export class PainelComponent implements OnInit {
     this.http.get<Dolar>("https://economia.awesomeapi.com.br/json/all/USD-BRL",).subscribe(
       _dolar =>{
         this.dolar = _dolar;
-        this.ListarCidades(this.opcao, this.dolar.USD.bid);
+        this.ListarCidades(this.opcao, this.dolar.USD.ask);
       },
       error =>{
         console.log("erro");
@@ -93,8 +97,8 @@ export class PainelComponent implements OnInit {
       this.http.get<Dolar>("https://economia.awesomeapi.com.br/json/all/USD-BRL",).subscribe(
       _dolar =>{
         this.dolar = _dolar;
-        this.ListarEstados(this.dolar.USD.bid);
-        this.ListarCidades(2, this.dolar.USD.bid);
+        this.ListarEstados(this.dolar.USD.ask);
+        this.ListarCidades(11, this.dolar.USD.ask);
       },
       error =>{
         console.log("erro");
@@ -131,8 +135,8 @@ export class PainelComponent implements OnInit {
         this.http.get<Dolar>("https://economia.awesomeapi.com.br/json/all/USD-BRL",).subscribe(
           _dolar =>{
             this.dolar = _dolar;
-            this.ListarEstados(this.dolar.USD.bid);
-            this.ListarCidades(this.opcao, this.dolar.USD.bid);
+            this.ListarEstados(this.dolar.USD.ask);
+            this.ListarCidades(this.opcao, this.dolar.USD.ask);
           },
           error =>{
             console.log("erro");
@@ -144,6 +148,12 @@ export class PainelComponent implements OnInit {
       });
   }
 
-  
+  AdicionarCidades(): void{
+    this.router.navigate(['/inserirCidade']);
+  }
+
+  AdicionarCidadesLote(): void{
+    this.router.navigate(['/importarCidades']);
+  }
 
 }

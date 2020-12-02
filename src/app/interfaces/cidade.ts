@@ -1,5 +1,5 @@
 export interface ICidade
 {
-    cidade:     string;
+    nome:     string;
     populacao:  number;
 }
