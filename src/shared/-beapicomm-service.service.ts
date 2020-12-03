@@ -16,6 +16,8 @@ export class BEAPICommService
   private PostURL:              string  = '';
   
   private novaCidade:           ICidade = {nome: '', populacao: 0};
+  private errorCount:           any    = 0;
+  private cidadesExistentes:    string[]  = [];
 
   constructor( private http: HttpClient ) { }
 
@@ -40,7 +42,6 @@ export class BEAPICommService
   }
 
 
-
   public Post_NovaCidade(novaCidade: string, populacao: any, estado: string) : any
   {
     
@@ -52,8 +53,34 @@ export class BEAPICommService
 
     this.novaCidade = { nome: novaCidade, populacao: populacao };
 
-    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(success => {alert("Incluso com Sucesso")},
-                                                                          error  => {alert("Erro" + error.message)});
+    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(success => {alert("Incluso com Sucesso")}, 
+                                                                          error   => {alert("Erro durante a inserção")});
   }
+
+
+  public Post_LotesCidades(cidades: ICidade[]) : void
+  {
+    console.log(cidades)
+
+    this.errorCount = 0;
+
+    for(let k = 0; k <= cidades.length; k++)
+    {
+      let idEstado = this.IdentificaEstado(cidades[k].estado as string);
+
+      this.PostURL = this.API_PostURL + idEstado.toString() + '/';
+
+      let cidade: ICidade = {nome: cidades[k].nome, populacao: cidades[k].populacao}
+
+      this.http.post(this.PostURL, cidade).pipe(take(1)).subscribe(success => {}, 
+                                                                   error   => {this.errorCount++, 
+    
+                                                                    this.cidadesExistentes.push(cidade.nome)});
+      this.cidadesExistentes = [];
+      }
+
+    //this.errorCount = -1;
+  }
+
 
 }

@@ -24,7 +24,7 @@ import { InsercaoComponent } from '../insercao/insercao.component';
 
 export class PainelComponent implements OnInit {
 
-  public opcao:number = 2;
+  public opcao:number = 11;
   public estados: Array<Estado> = [];
   public dolar: Dolar;
   public cidades: Array<Cidade>;
@@ -34,7 +34,7 @@ export class PainelComponent implements OnInit {
   flag: boolean = false;
   SelectedIDs:any[] = [];
   pag: number = 1;
-  contador: number = 3;
+  contador: number = 5;
 
   
   img: string[] = [

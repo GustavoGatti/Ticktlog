@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { BEAPICommService } from 'src/shared/-beapicomm-service.service';
 import { Router } from '@angular/router';
+import { ICidade } from '../interfaces/cidade';
 
 @Component({
   selector: 'app-importacao',
@@ -13,6 +14,9 @@ export class ImportacaoComponent
 {
 
   public excelImportado : [][]    = [];
+  private loteCidades     : ICidade[] = [];
+  pag: number = 1;
+  contador: number = 5;
 
   constructor( public APICall        : BEAPICommService,
     private router: Router, ) { }
@@ -48,18 +52,34 @@ export class ImportacaoComponent
     return false;
   }
 
-  public ProcessaCidades() : boolean
-  {
+  public ProcessaCidades() : boolean{
 
+    console.log(this.excelImportado)
+    if(this.excelImportado.length == 0)
+    {
+      alert("Selecione um Arquivo .xlsx!");
 
-    for(let linha = 0; linha <= this.excelImportado.length; linha++)
+      return false;
+    }
+    else
     {
 
-      this.APICall.Post_NovaCidade(this.excelImportado[linha].Nome,
-                                   this.excelImportado[linha].Populacao,
-                                   this.excelImportado[linha].Estado);
+      for(let linha = 0; linha < this.excelImportado.length; linha++)
+      {
+        console.log(this.excelImportado[0])
+        let cidade: ICidade = { nome:       this.excelImportado[linha].Nome,
+                                populacao:  this.excelImportado[linha].Populacao,
+                                estado:     this.excelImportado[linha].Estado };
 
+        this.loteCidades.push(cidade);
+
+      }
+
+      
+      this.APICall.Post_LotesCidades(this.loteCidades);
     }
+
+
 
     return false;
 
