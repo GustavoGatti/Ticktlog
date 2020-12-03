@@ -7,7 +7,9 @@
                         <input (change)="onChangeListener($event)" type="file" class="custom-file-input" id="customFileLangHTML" multiple="false" accept=".xlsx">
                         <label class="custom-file-label" for="customFileLangHTML" data-browse="Localizar">Localizar arquivo .xlsx</label>
                         <br>
-                        <a (click)="ProcessaCidades()" style="font-size: small;" class="btn btn-success btn-lg btn-block" role="button"> Importar Cidades! </a>
+                        <br>
+                        <a  (click)="ProcessaCidades()" style="font-size: small;" class="btn btn-success btn-lg btn-block" role="button"> Importar Cidades! </a>
+                        <a (click)="voltar()" class="btn btn-outline-primary btn-lg btn-block" role="button"> Voltar </a>
                     </div>
                 </div>
             </div>

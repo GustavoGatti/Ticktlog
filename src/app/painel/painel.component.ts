@@ -24,7 +24,7 @@ import { InsercaoComponent } from '../insercao/insercao.component';
 
 export class PainelComponent implements OnInit {
 
-  public opcao:number;
+  public opcao:number = 2;
   public estados: Array<Estado> = [];
   public dolar: Dolar;
   public cidades: Array<Cidade>;

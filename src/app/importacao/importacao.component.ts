@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { BEAPICommService } from 'src/shared/-beapicomm-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-importacao',
@@ -13,7 +14,8 @@ export class ImportacaoComponent
 
   public excelImportado : [][]    = [];
 
-  constructor( public APICall        : BEAPICommService ) { }
+  constructor( public APICall        : BEAPICommService,
+    private router: Router, ) { }
 
   
 
@@ -61,5 +63,9 @@ export class ImportacaoComponent
 
     return false;
 
+  }
+
+  voltar(): void {
+    this.router.navigate(['']);
   }
 }
