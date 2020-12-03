@@ -8,3 +8,96 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
+
+
+
+ .row {
+     margin-top: 5%;
+     margin-left: 0%;
+     margin-right: 0%
+ }
+
+ .page {
+     margin-top: 0%
+ }
+
+ .btn {
+     border-radius: 25px;
+     width: 80%;
+     margin-top: 2%
+ }
+
+ .sign {
+     border-radius: 25px;
+     width: 25%;
+     margin: auto
+ }
+
+ form {
+     padding: 0;
+     margin-left: 15%
+ }
+
+ .abc {
+     padding: 2%;
+     margin: auto
+ }
+
+ .xyz {
+     background-color: gray;
+     padding: 2%
+ }
+
+ .form-control {
+     width: 80%;
+     border-radius: 25px
+ }
+
+ .fa {
+     color: white;
+     margin-top: 5%
+ }
+
+ .in {
+     color: #495057;
+     margin-right: 100%
+ }
+
+ .in2 {
+     color: #495057;
+     margin-right: auto
+ }
+
+ .my {
+     background-color: #bcc2be;
+     border: none
+ }
+
+ .custom-control {
+     margin-bottom: 2%
+ }
+
+ h2.account-text {
+     color: rgb(175, 240, 226) !important;
+     font-weight: 200
+ }
+
+ .account-description {
+     color: #fff;
+     margin-bottom: 4%;
+     font-weight: 200
+ }
+
+ @media only screen and (max-width: 600px) { 
+     row {
+         margin-top: 5%;
+         margin-left: 1%;
+         margin-right: 1%
+     }
+ }
+
+.bg{
+    background-image: url(https://media.cntraveler.com/photos/5ca60ffcdba130da42d0d834/master/w_4000,h_2292,c_limit/Shanghai_GettyImages-936093364.jpg);
+    background-size: 100% 100%;
+    opacity: 0.9;
+}

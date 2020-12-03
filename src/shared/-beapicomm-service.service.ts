@@ -12,12 +12,13 @@ import {ICidade} from '../app/interfaces/cidade';
 export class BEAPICommService 
 {
 
-  private readonly API_PostURL: string  = "https://ticketlog-2.herokuapp.com/api/cidades/estado=";
+  private readonly API_PostURL: string  = "https://ticketlog-tcs.herokuapp.com/api/cidades/estado=";
   private PostURL:              string  = '';
   
   private novaCidade:           ICidade = {nome: '', populacao: 0};
-  private errorCount:           any    = 0;
-  private cidadesExistentes:    string[]  = [];
+  public errorCount:           any    = 0;
+  public cidadesExistentes:    string[]  = [];
+  private ok: number = 2;
 
   constructor( private http: HttpClient ) { }
 
@@ -53,8 +54,8 @@ export class BEAPICommService
 
     this.novaCidade = { nome: novaCidade, populacao: populacao };
 
-    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(success => {alert("Incluso com Sucesso")}, 
-                                                                          error   => {alert("Erro durante a inserção")});
+    this.http.post(this.PostURL, this.novaCidade).pipe(take(1)).subscribe(success => {this.ok = 1}, 
+                                                                  error   => {this.ok = 0});
   }
 
 

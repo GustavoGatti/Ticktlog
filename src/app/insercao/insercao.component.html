@@ -1,43 +1,52 @@
 
-<div class="container h-200 d-flex justify-content-center" style="width: 800px; margin-top: 50px;">
-    <div class="row">
-        <div class="card">
-            <div class="card-header" style="font-size: larger; font-weight: bold; text-align: center; color: white; background-color: lightseagreen;">
-                Inclusão de Cidade
-            </div>
-            <div class="card-body" style="text-align: center;">
-                <div class="dropdown">
-                    <button style="background-color: lightseagreen; border: lightseagreen;"  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeEstado}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <button (click)="nomeEstado='Paraná'" (click)="idEstado = 21" value=21 class="dropdown-item" type="button"> Paraná           </button>
-                      <button (click)="nomeEstado='Rio Grande do Sul'" (click)="idEstado = 1" value=1 class="dropdown-item" type="button"> Rio Grande do Sul</button>
-                      <button (click)="nomeEstado='Santa Catarina'" (click)="idEstado = 11" value=11 class="dropdown-item" type="button"> Santa Catarina   </button>
-                    </div>
-                  </div>
-                <hr>
-            <form role="form">
-            <div class="form-group"> 
-                <div class="input-group">
-                    <label style="margin-right: 30px; margin-top: 10px; color: lightseagreen;"><b>Cidade:   </b> </label>
-                    <input #cidade type="text" class="form-control" id="cidade" placeholder="Informe a Cidade" [(ngModel)]="campoNome" required autofocus />
-                </div>
-                <br>
-                <div class="input-group ">
-                    <label style="margin-right: 5px; margin-top: 10px; color: lightseagreen;"><b>População: </b></label>
-                    <input #populacao type="number" class="form-control" id="populacao" placeholder="Informe a População" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus />
+<div class="row bg" >
+    <div style="margin-right: 150%;" class="col-sm-4 text-center abc">
+        <form action="#!">
+            <p class="h4 mb-4 text-left"><b>Nova Cidade Em:</b></p>
+
+            <div class="h4 mb-4 text-left dropdown">
+
+                <button  class="btn btn-success dropdown-toggle myButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeEstado}}</button>
+                
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                  <button (click)="nomeEstado='Paraná'"             (click)="idEstado = 21" value=21 class="dropdown-item" type="button"> Paraná           </button>
+                  <button (click)="nomeEstado='Rio Grande do Sul'"  (click)="idEstado = 1"  value=1  class="dropdown-item" type="button"> Rio Grande do Sul</button>
+                  <button (click)="nomeEstado='Santa Catarina'"     (click)="idEstado = 11" value=11 class="dropdown-item" type="button"> Santa Catarina   </button>
+                  
                 </div>
             </div>
-            <div class="row">
-            </div>
-            </form>
-            <br/>
-            <a style="background-color: lightseagreen; border: lightseagreen;" (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, nomeEstado)" class="btn btn-success btn-lg btn-block" role="button"> Inserir Cidade! </a>
-            <a (click)="voltar()" class="btn btn-outline-primary btn-lg btn-block" role="button"> Voltar </a>
-            <br>
-            </div>
-            
-          </div>
-        
+            <input #cidade    type="text" id="defaultCidade"    class="form-control mb-4" placeholder="Insira nome da cidade" [(ngModel)]="campoNome" aria-describedby="basic-addon1" required autofocus> 
+                
+                  
+            <input #populacao type="number" id="defaultPopulacao" class="form-control mb-4" placeholder="Insira total de habitantes" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus >            
+
+            <button (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, nomeEstado)" data-toggle="modal" data-target="#modalFeedback" class="btn btn-info btn-block " type="submit" >Inserir Cidade</button> 
+            <button (click)="voltar()" class="btn btn-info btn-block my" type="submit">Voltar</button>
+        </form>
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog" id="modalFeedback">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Informação !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf= "APICall.ok == 1" class="modal-body">
+          <p>Inserido Com Sucesso !</p>
+        </div>
+        <div *ngIf= "APICall.ok == 0" class="modal-body">
+            <p>Cidade Já Existe !</p>
+        </div>
+
+        <div class="modal-footer">
+          <button style="background-color: #238f33;" type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+</div>

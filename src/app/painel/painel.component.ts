@@ -151,7 +151,6 @@ export class PainelComponent implements OnInit {
   }
 
   AdicionarCidades(): void{
-
     this.router.navigate(['/inserirCidade/' + this.opcao]);
   }
 

@@ -39,6 +39,7 @@ export class InsercaoComponent implements OnInit{
     this.router.navigate(['/importarCidades']);
     return false;
   }
+  
   voltar(): void {
     this.router.navigate(['']);
   }

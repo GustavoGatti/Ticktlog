@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { BEAPICommService } from 'src/shared/-beapicomm-service.service';
 import { Router } from '@angular/router';
@@ -10,18 +10,19 @@ import { ICidade } from '../interfaces/cidade';
   styleUrls: ['./importacao.component.css']
 })
 
-export class ImportacaoComponent
-{
+export class ImportacaoComponent{
 
   public excelImportado : [][]    = [];
   private loteCidades     : ICidade[] = [];
   pag: number = 1;
   contador: number = 5;
+  cont:number = 0;
 
   constructor( public APICall        : BEAPICommService,
     private router: Router, ) { }
 
-  
+
+
 
   onChangeListener(trigEvent: any) : boolean
   {
@@ -86,6 +87,8 @@ export class ImportacaoComponent
   }
 
   voltar(): void {
+    this.APICall.cidadesExistentes = [];
+    this.APICall.errorCount = undefined;
     this.router.navigate(['']);
   }
 }

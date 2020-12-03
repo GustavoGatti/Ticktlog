@@ -3,3 +3,56 @@ footer{
     background-color: lightseagreen;
     text-align: center;
 }
+
+.myButton {
+    background-color: lightseagreen;
+    border: none;
+    box-shadow: 1px 1px 3px rgb(126, 122, 122);
+    border-radius: 30px;
+}
+
+#dropdownMenu2:target{
+    background-color: lightseagreen;
+}
+#dropdownMenu2:hover{
+    background-color: lightseagreen;
+}
+#dropdownMenu2:visited{
+    background-color: lightseagreen;
+}
+#dropdownMenu2:active{
+    background-color: lightseagreen;
+}
+#dropdownMenu2:focus{
+    background-color: lightseagreen;
+}
+#dropdownMenu2:link{
+    background-color: lightseagreen;
+}
+
+#dropdownMenuLink:target{
+    background-color: lightseagreen;
+}
+#dropdownMenuLink:hover{
+    background-color: lightseagreen;
+}
+#dropdownMenuLink:visited{
+    background-color: lightseagreen;
+}
+#dropdownMenuLink:active{
+    background-color: lightseagreen;
+}
+#dropdownMenuLink:focus{
+    background-color: lightseagreen;
+}
+#dropdownMenuLink:link{
+    background-color: lightseagreen;
+}
+
+.delete {
+    background-color: rgb(243, 60, 60);
+}
+
+.estados {
+    width: 90%;
+}
