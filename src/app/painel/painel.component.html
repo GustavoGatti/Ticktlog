@@ -1,6 +1,7 @@
 <html>
-    <body>
-    <div class="dropdown" >
+    <body style="background-color: rgb(243, 243, 243);">
+     <hr> 
+    <div class="dropdown" style="color: lightseagreen;">
         <a class="btn btn-secondary dropdown-toggle"   href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          {{estados[indice].nome}}
         </a>
@@ -13,73 +14,76 @@
     
 <div class="row" id="info" >
   
-  <div  style=" width: 150px; height: 150px; margin-left: 120px;">
-    <p style="text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Bandeira</p>
+  <div style=" width: 150px; height: 150px; margin-left: 120px;">
+    <p style=" color: lightseagreen; text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Bandeira</p>
     <hr>
     <img [src]='img[indice]' style="width: 150px;" >
     
   </div>
   <div  style=" width: 150px; height: 150px; margin-left: 70px;">
-    <p style=" text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">População</p>
+    <p style="color: lightseagreen; text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">População</p>
     <hr>
-    <p style="text-align: center; font-size: 40px; font-weight: bold;">{{estados[indice].populacao | number}}</p>
-    <p style="text-align: center; font-weight: bold; font-size: 16px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Habitantes</p>
+    <p style="color:black;text-align: center; font-size: 40px; font-weight: bold;">{{estados[indice].populacao | number}}</p>
+    <p style="font-style: italic; color:black;text-align: center; font-weight: bold; font-size: 16px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Habitantes</p>
   </div>
   <div  style=" width: 270px; height: 150px; margin-left: 40px;">
-    <p style=" text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Custo</p>
+    <p style="color: lightseagreen; text-align: center; font-weight: bold; font-size: 30px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Custo</p>
     <hr>
-    <p style="text-align: center; font-size: 35px; font-weight: bold; margin-top: 22px;">{{estados[indice].custoEstadoUS | currency: 'BRL'}}</p>
+    <p style="color:black;text-align: center; font-size: 35px; font-weight: bold; margin-top: 22px;">{{estados[indice].custoEstadoUS | currency: 'BRL'}}</p>
   </div>
 </div>
 
 
-<nav class="navbar">
-  <input style="width: 800px; margin-left: 80%;" class="form-control" type="text" name="search" placeholder="Pesquisar" [(ngModel)]="filter">
-  <!--Input que deve ser adicionado--> 
-</nav>
-
-<div id="tabela">
-   <table class="table table-striped table-hover">
-       <thead class="thead-dark">
-         <tr>
-           <th scope="col">Id</th>
-           <th scope="col">Cidade</th>
-           <th scope="col">População</th>
-           <th scope="col">Custo da Cidade</th>
-           <th scope="col"></th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let cidade of cidades | filter:filter | paginate: { itemsPerPage: contador, currentPage: pag }">
-           <th scope="row">{{cidade.id}}</th>
-           <td>{{cidade.nome}}</td>
-           <td>{{cidade.populacao}}</td>
-           <td>{{cidade.custoCidadeUS | currency: 'BRL'}}</td>
-           <td>
-            <div *ngIf="indice != 0" class="form-group">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck"  (click)="selectID(cidade.id)">
-                <label class="form-check-label" for="gridCheck">
-                </label>
-              </div>
-            </div>
-           </td>
-         </tr>
-       </tbody>
-     </table>
-     <div
-		class="text-right">
-		<pagination-controls
-		(pageChange)="pag = $event" 
-		previousLabel="Anterior"
-		nextLabel="Próximo"></pagination-controls>
-		</div>
 
 
-</div>
-  <button (click) = "AdicionarCidades()" style="margin-top: 20px; margin-left: 65%;" type="button" class="btn btn-success"  >Adicionar Cidade</button>
-  <button (click) = "AdicionarCidadesLote()" type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" >Adicionar Cidade por Lote</button>
+<div class="card">
+  <div class="card-header">
+    <nav class="navbar">
+      <input style="width: 450px; margin-left: 60%;" class="form-control" type="text" name="search" placeholder="Pesquisar" [(ngModel)]="filter">
+      <!--Input que deve ser adicionado--> 
+    </nav>
+  </div>
+  <div class="card-body">
+      <table class="table table-striped table-hover">
+          <thead class="thead" style="background-color: rgb(49, 216, 208); color: rgb(59, 59, 59);">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">População</th>
+              <th scope="col">Custo da Cidade</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cidade of cidades | filter:filter | paginate: { itemsPerPage: contador, currentPage: pag }">
+              <th scope="row">{{cidade.id}}</th>
+              <td>{{cidade.nome}}</td>
+              <td>{{cidade.populacao}}</td>
+              <td>{{cidade.custoCidadeUS | currency: 'BRL'}}</td>
+              <td>
+               <div *ngIf="indice != 0" class="form-group">
+                 <div class="form-check">
+                     <input class="form-check-input" type="checkbox" id="gridCheck"  (click)="selectID(cidade.id)">
+                   <label class="form-check-label" for="gridCheck">
+                   </label>
+                 </div>
+               </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div
+       class="text-right">
+       <pagination-controls
+       (pageChange)="pag = $event" 
+       previousLabel="Anterior"
+       nextLabel="Próximo"></pagination-controls>
+       </div>
+  <button (click) = "AdicionarCidades()" style="margin-top: 20px; margin-left: 50%; background-color: rgb(49, 216, 208); border:  rgb(49, 216, 208);" type="button" class="btn btn-success"  >Adicionar Cidade</button>
+  <button (click) = "AdicionarCidadesLote()" type="button" class="btn btn-success" style="margin-left: 10px; margin-top: 20px;background-color: rgb(49, 216, 208); border:  rgb(49, 216, 208);" >Adicionar Cidade por Lote</button>
   <button *ngIf="indice != 0" type="button" class="btn btn-danger" style="margin-left: 10px; margin-top: 20px;" (click) = "deleteSelected()">Excluir</button>
+  </div>
+</div>
     </body>
 
 </html>

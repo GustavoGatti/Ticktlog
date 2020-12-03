@@ -12,7 +12,7 @@ import {ICidade} from '../app/interfaces/cidade';
 export class BEAPICommService 
 {
 
-  private readonly API_PostURL: string  = "https://ticketlog-tcs.herokuapp.com/api/cidades/estado=";
+  private readonly API_PostURL: string  = "https://ticketlog-2.herokuapp.com/api/cidades/estado=";
   private PostURL:              string  = '';
   
   private novaCidade:           ICidade = {nome: '', populacao: 0};

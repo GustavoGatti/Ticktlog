@@ -1,48 +1,43 @@
 
-<div class="container h-100 d-flex justify-content-center" style="width: 800px; margin-top: 50px;">
+<div class="container h-200 d-flex justify-content-center" style="width: 800px; margin-top: 50px;">
     <div class="row">
-        <div>
-            <div class="panel panel-default" style="width: max-content;">
-                <div class="panel-heading" style="text-align: center; "> 
-                    <h3 class="panel-title">
-                        Inclusão de Cidade
-                    </h3>
+        <div class="card">
+            <div class="card-header" style="font-size: larger; font-weight: bold; text-align: center; color: white; background-color: lightseagreen;">
+                Inclusão de Cidade
+            </div>
+            <div class="card-body" style="text-align: center;">
+                <div class="dropdown">
+                    <button style="background-color: lightseagreen; border: lightseagreen;"  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeEstado}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <button (click)="nomeEstado='Paraná'" (click)="idEstado = 21" value=21 class="dropdown-item" type="button"> Paraná           </button>
+                      <button (click)="nomeEstado='Rio Grande do Sul'" (click)="idEstado = 1" value=1 class="dropdown-item" type="button"> Rio Grande do Sul</button>
+                      <button (click)="nomeEstado='Santa Catarina'" (click)="idEstado = 11" value=11 class="dropdown-item" type="button"> Santa Catarina   </button>
+                    </div>
+                  </div>
+                <hr>
+            <form role="form">
+            <div class="form-group"> 
+                <div class="input-group">
+                    <label style="margin-right: 30px; margin-top: 10px; color: lightseagreen;"><b>Cidade:   </b> </label>
+                    <input #cidade type="text" class="form-control" id="cidade" placeholder="Informe a Cidade" [(ngModel)]="campoNome" required autofocus />
                 </div>
-                <div class="panel-body" style="text-align: center;">
-                        <hr>
-                       
-                        <div class="dropdown">
-                            <button  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeEstado}}</button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                              <button (click)="nomeEstado='Paraná'" (click)="idEstado = 21" value=21 class="dropdown-item" type="button"> Paraná           </button>
-                              <button (click)="nomeEstado='Rio Grande do Sul'" (click)="idEstado = 1" value=1 class="dropdown-item" type="button"> Rio Grande do Sul</button>
-                              <button (click)="nomeEstado='Santa Catarina'" (click)="idEstado = 11" value=11 class="dropdown-item" type="button"> Santa Catarina   </button>
-                            </div>
-                          </div>
-                        <hr>
-                    <form role="form">
-                    <div class="form-group"> 
-                        <div class="input-group">
-                            <label style="margin-right: 30px; margin-top: 10px;"><b>Cidade:   </b> </label>
-                            <input #cidade type="text" class="form-control" id="cidade" placeholder="Informe a Cidade" [(ngModel)]="campoNome" required autofocus />
-                        </div>
-                        <br>
-                        <div class="input-group ">
-                            <label style="margin-right: 5px; margin-top: 10px;"><b>População: </b></label>
-                            <input #populacao type="number" class="form-control" id="populacao" placeholder="Informe a População" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus />
-                        </div>
-                    </div>
-                    <div class="row">
-                    </div>
-                    </form>
+                <br>
+                <div class="input-group ">
+                    <label style="margin-right: 5px; margin-top: 10px; color: lightseagreen;"><b>População: </b></label>
+                    <input #populacao type="number" class="form-control" id="populacao" placeholder="Informe a População" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus />
                 </div>
             </div>
+            <div class="row">
+            </div>
+            </form>
             <br/>
-            <a (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, nomeEstado)" class="btn btn-success btn-lg btn-block" role="button"> Inserir Cidade! </a>
+            <a style="background-color: lightseagreen; border: lightseagreen;" (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, nomeEstado)" class="btn btn-success btn-lg btn-block" role="button"> Inserir Cidade! </a>
             <a (click)="voltar()" class="btn btn-outline-primary btn-lg btn-block" role="button"> Voltar </a>
             <br>
+            </div>
             
-        </div>
+          </div>
         
     </div>
 </div>
+
