@@ -14,6 +14,7 @@ export class ImportacaoComponent{
 
   public excelImportado : [][]    = [];
   private loteCidades     : ICidade[] = [];
+  public filename         : string = "Localizar Arquivo .xlsx ou .xls";
   pag: number = 1;
   contador: number = 5;
   cont:number = 0;
@@ -27,6 +28,7 @@ export class ImportacaoComponent{
   onChangeListener(trigEvent: any) : boolean
   {
     const target : DataTransfer = <DataTransfer>(trigEvent.target);
+    this.filename = target.files[0].name;
 
     if(target.files.length !==1) throw new Error("Apenas um arquivo por vez é suportado! ");
 

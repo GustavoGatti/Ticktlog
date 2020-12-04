@@ -1,6 +1,6 @@
 
 <div class="row bg" >
-    <div style="margin-right: 150%;" class="col-sm-4 text-center abc">
+    <div style="margin-right: 100%; margin-left: 4.4%;" class="col-sm-4 text-center abc">
         <form action="#!">
             <p class="h4 mb-4 text-left"><b>Nova Cidade Em:</b></p>
 
@@ -16,8 +16,17 @@
                   
                 </div>
             </div>
+      
+              <label style="opacity: 2; text-align: start; font-weight: bold; font-size: larger; margin-right: 55%;"  for="defaultCidade"> Nome da Cidade: </label><br>
+           
+            
+
             <input #cidade    type="text" id="defaultCidade"    class="form-control mb-4" placeholder="Insira nome da cidade" [(ngModel)]="campoNome" aria-describedby="basic-addon1" required autofocus> 
-                
+            
+         
+              <label style="opacity: 2; text-align: start; font-weight: bold;font-size: larger; margin-right: 70%;" for="defaultPopulacao"> População: </label><br>
+         
+            
                   
             <input #populacao type="number" id="defaultPopulacao" class="form-control mb-4" placeholder="Insira total de habitantes" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus>            
 
