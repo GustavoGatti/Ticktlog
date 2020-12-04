@@ -6,7 +6,7 @@
 
             <div class="h4 mb-4 text-left dropdown">
 
-                <button  class="btn btn-success dropdown-toggle myButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeEstado}}</button>
+                <button  class="btn btn-success dropdown-toggle myButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false"><b>{{nomeEstado}}</b></button>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
@@ -19,10 +19,10 @@
             <input #cidade    type="text" id="defaultCidade"    class="form-control mb-4" placeholder="Insira nome da cidade" [(ngModel)]="campoNome" aria-describedby="basic-addon1" required autofocus> 
                 
                   
-            <input #populacao type="number" id="defaultPopulacao" class="form-control mb-4" placeholder="Insira total de habitantes" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus >            
+            <input #populacao type="number" id="defaultPopulacao" class="form-control mb-4" placeholder="Insira total de habitantes" [(ngModel)]="campoPopulacao" oninput="validity.valid||(value='')" required autofocus>            
 
             <button (click)="APICall.Post_NovaCidade(cidade.value, populacao.value, nomeEstado)" data-toggle="modal" data-target="#modalFeedback" class="btn btn-info btn-block " type="submit" >Inserir Cidade</button> 
-            <button (click)="voltar()" class="btn btn-info btn-block my" type="submit">Voltar</button>
+            <button (click)="voltar()" class="btn btn-outline-primary btn-block my" type="submit">Voltar</button>
         </form>
     </div>
 </div>
@@ -36,12 +36,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div *ngIf= "APICall.ok == 1" class="modal-body">
-          <p>Inserido Com Sucesso !</p>
+          <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+          </svg> Inserido Com Sucesso !
         </div>
         <div *ngIf= "APICall.ok == 0" class="modal-body">
-            <p>Cidade Já Existe !</p>
+          <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+              Falha durante a Inserção !
+              <p style="margin-left: 18.5%;">Preencha os campos corretamente</p>
         </div>
 
         <div class="modal-footer">

@@ -69,9 +69,11 @@ input[type=number] {
  }
 
  .my {
-     background-color: #bcc2be;
-     border: none
- }
+    background-color: #ffffff;
+    border-color: #4edcff;
+    border-width: 2px;
+    color:  #080808;
+}
 
  .custom-control {
      margin-bottom: 2%
